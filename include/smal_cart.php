@@ -21,7 +21,7 @@ function ViewSmalCartData(){
                     <a href="?actiond=true&pro_id='.$value['pro_id'].'">
 					<li class="header-cart-item flex-w flex-t m-b-12">
 					<div class="header-cart-item-img">
-						<img src="images/item-cart-01.jpg" alt="IMG">
+						<img src="admin/'.$value['pro_img'].'" alt="IMG">
 					</div>
 </a>
 					<div class="header-cart-item-txt p-t-8">

@@ -1,19 +1,20 @@
 <?php 
 
 session_start(); 
-
+$op = false ;
+$total_cart = 0 ;
 function ViewCartData(){
-
+	global $total_cart ; 
 	if(isset($_SESSION['Cart'])){
-		$op = false ;
+		global $op ;
 		foreach ($_SESSION['Cart'] as $value) {
 			$op = true ;
-				
+			$total_cart += $value['total'];
 			echo '
 			<tr class="table_row">
 			<td class="column-1">
 				<div class="how-itemcart1">
-					<img src="images/item-cart-04.jpg" alt="IMG">
+					<img src="admin/'.$value['pro_img'].'" alt="IMG">
 				</div>
 			</td>
 			<td class="column-2">'.$value['pro_name'].'</td>
@@ -141,25 +142,22 @@ function ViewCartData(){
 						</div>
 					</div>
 				</div>
-
+<?php if($op){ ?>
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-						<h4 class="mtext-109 cl2 p-b-30">
+<?php if(isset($_GET['e'])){
+	echo '
+	<div class="alert alert-danger" role="alert">
+	please logged in to check out your order <a class="btn btn-primary" href="login.php" >Log in</a>
+   </div>	
+	';
+}?>
+					<h4 class="mtext-109 cl2 p-b-30">
 							Cart Totals
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
-								<span class="stext-110 cl2">
-									Subtotal:
-								</span>
-							</div>
-
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									$79.65
-								</span>
-							</div>
+				
 						</div>
 
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
@@ -182,8 +180,7 @@ function ViewCartData(){
 									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
 										<select class="js-select2" name="time">
 											<option>Select a country...</option>
-											<option>USA</option>
-											<option>UK</option>
+											<option>Jordan</option>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -195,12 +192,7 @@ function ViewCartData(){
 									<div class="bor8 bg0 m-b-22">
 										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
 									</div>
-									
-									<div class="flex-w">
-										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Update Totals
-										</div>
-									</div>
+						
 										
 								</div>
 							</div>
@@ -215,17 +207,17 @@ function ViewCartData(){
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									$<?php echo $total_cart;?>
 								</span>
 							</div>
 						</div>
-
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+						<a href="checkout.php" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Proceed to Checkout
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
+			<?php } ?> 
 		</div>
 	</form>
 		
