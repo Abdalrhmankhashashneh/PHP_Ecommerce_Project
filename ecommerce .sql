@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2022 at 07:31 PM
+-- Generation Time: May 22, 2022 at 11:41 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -30,11 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(255) NOT NULL,
-  `admin_img` text NOT NULL,
   `admin_email` varchar(255) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
   `admin_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, `admin_date`) VALUES
+(1, 'admin', 'smsmspy@gmail.com', 'admin', '2022-05-22');
 
 -- --------------------------------------------------------
 
@@ -47,7 +53,8 @@ CREATE TABLE `cart` (
   `product_id` int(11) NOT NULL,
   `product_quntity` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -58,7 +65,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
-  `category_name` varchar(50) NOT NULL,
+  `category_name` varchar(255) NOT NULL,
   `category_img` text NOT NULL,
   `category_des` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -68,8 +75,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`, `category_img`, `category_des`) VALUES
-(1, 'asdas', 'asda', 'asda'),
-(2, 'abood', '', '');
+(5, 'Tools', 'images/tools.png', 'all needed tool for your kitchen '),
+(6, 'Electronic Device  ', 'images/Electrical_devices.png', 'all Electronic Devices  you need '),
+(7, 'Kitchen Design ', 'images/pexels-photo-932095.jpeg', 'all you need for your kitchen');
 
 -- --------------------------------------------------------
 
@@ -106,7 +114,7 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
-  `product_name` varchar(150) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
   `product_price` double NOT NULL,
   `product_img` text NOT NULL,
   `product_des` text NOT NULL,
@@ -118,9 +126,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_img`, `product_des`, `sub_category_id`) VALUES
-(1, 'Laptop', 5000, 'img', 'Text messages are used for personal, family, business and social purposes. Governmental and non-governmental organizations use text messaging for communication between colleagues. In the 2010s, the sending of short informal messages became an accepted part of many cultures, as happened earlier with emailing.[1] This makes texting a quick and easy way to communicate with friends, family and colleagues, including in contexts where a call would be impolite or inappropriate (e.g., calling very late at night or when one knows the other person is busy with family or work activities). Like e-mail and voicemail and unlike calls (in which the caller hopes to speak directly with the recipient), texting does not require the caller and recipient to both be free at the same moment; this permits communication even between busy individuals. Text messages can also be used to interact with automated systems, for example, to order products or services from e-commerce websites, or to participate in online contests.', 2),
-(2, 'mobile', 5000, 'img', 'laptop very very very expensive that you will dream to buy it \r\n:? ', 2),
-(3, 'abood khashashneh ', 1000000, 'image', 'all you need in one person ', 5);
+(6, '4-Piece Stainless Steel Bowls', 150, 'images/5c5a06abdfa1e772475f5607.webp', 'EXCLUSIVE\r\nWhip, mix, marinate, toss, stir and serve in this essential set. Crafted of industrially beautiful stainless steel with rims and lips for a sturdy grip, this attractive and modern set nests for space-saving storage. Our exclusive four-piece set of stainless steel bowls includes 0.75-quart, 1.5-quart, 3-quart and 5-quart bowls.\r\n\r\n4-Piece Stainless Steel Bowls: 0.75-qt., 1.5-qt., 3-qt. and 5-qt. bowls.\r\nStainless steel\r\nNesting\r\nDishwasher-safe\r\nMade in India\r\nItem Number: SKI-50206', 9),
+(7, '4-Piece Stainless Steel Bowls', 200, 'images/5c5a06abdfa1e772475f5607.webp', 'EXCLUSIVE\r\nWhip, mix, marinate, toss, stir and serve in this essential set. Crafted of industrially beautiful stainless steel with rims and lips for a sturdy grip, this attractive and modern set nests for space-saving storage. Our exclusive four-piece set of stainless steel bowls includes 0.75-quart, 1.5-quart, 3-quart and 5-quart bowls.\r\n\r\n4-Piece Stainless Steel Bowls: 0.75-qt., 1.5-qt., 3-qt. and 5-qt. bowls.\r\nStainless steel\r\nNesting\r\nDishwasher-safe\r\nMade in India\r\nItem Number: SKI-50206', 9),
+(8, '4-Piece Stainless Steel Bowls', 300, 'images/5c5a06abdfa1e772475f5607.webp', 'EXCLUSIVE\r\nWhip, mix, marinate, toss, stir and serve in this essential set. Crafted of industrially beautiful stainless steel with rims and lips for a sturdy grip, this attractive and modern set nests for space-saving storage. Our exclusive four-piece set of stainless steel bowls includes 0.75-quart, 1.5-quart, 3-quart and 5-quart bowls.\r\n\r\n4-Piece Stainless Steel Bowls: 0.75-qt., 1.5-qt., 3-qt. and 5-qt. bowls.\r\nStainless steel\r\nNesting\r\nDishwasher-safe\r\nMade in India\r\nItem Number: SKI-50206', 9);
 
 -- --------------------------------------------------------
 
@@ -141,9 +149,9 @@ CREATE TABLE `subcategory` (
 --
 
 INSERT INTO `subcategory` (`subcategory_id`, `subcategory_name`, `subcategory_img`, `subcategory_des`, `category_id`) VALUES
-(2, 'asdas', 'asdas', 'asdasd', 1),
-(4, 'abood sub category ', 'image', 'asdas', 2),
-(5, 'abood sub category ', 'image', 'asdas', 2);
+(9, 'tools group 1 ', 'images/1593618139144.jpeg', 'tools group  1', 5),
+(12, 'tools group 2', 'images/1593618139144.jpeg', 'tools group 2', 5),
+(13, 'tools group 3', 'images/1593618139144.jpeg', 'tools group 3', 5);
 
 -- --------------------------------------------------------
 
@@ -153,13 +161,20 @@ INSERT INTO `subcategory` (`subcategory_id`, `subcategory_name`, `subcategory_im
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `address` tinytext NOT NULL,
-  `city` varchar(10) NOT NULL,
-  `phone` tinyint(4) NOT NULL,
-  `username` varchar(50) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `password`, `email`, `address`, `city`, `phone`, `username`) VALUES
+(1, 'qweytruio123*', 'smsmspy@gmail.com', 'Kuforawan', 'jordan / irbid ', '0781959937', 'Abood khashahshenh');
 
 --
 -- Indexes for dumped tables
@@ -169,7 +184,8 @@ CREATE TABLE `user` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`admin_id`);
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `admin_email` (`admin_email`);
 
 --
 -- Indexes for table `cart`
@@ -219,7 +235,8 @@ ALTER TABLE `subcategory`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -229,19 +246,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -253,25 +270,25 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `subcategory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
