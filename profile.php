@@ -40,6 +40,9 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
 </head>
   <body>
   <?php include 'include/header.php' ?> 
+  	<!-- Cart -->
+	<?php include 'include/smal_cart.php'; ?> 
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -146,20 +149,39 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Total of the oeder </th>
+      <th scope="col">Date of order</th>
+      <th scope="col">Order detaile</th>
     </tr>
   </thead>
+  <?php 
+   
+  $q1 = "
+  SELECT * FROM `orders` 
+  ";
+  $data = $pdo->query($q1);
   
-  <tbody>
+  foreach($data as $v){
+      if($v['user_id'] == $user_id ){
+?>
+<tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row"><?php echo $v['order_id']; ?></th>
+      <td><?php echo $v['invoice']; ?></td>
+      <td><?php echo $v['order_date']; ?></td>
+      <td><?php echo '
+      <a class="btn btn-primary" href="orderdetail.php?order_id='.$v['order_id'].'">Show detaile </a>
+      
+      '; 
+      ?>
+      </td>
     </tr>
   </tbody>
+<?php
+      } 
+  }
+  ?>
+  
 
 </table>
 

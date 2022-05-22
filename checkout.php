@@ -1,13 +1,11 @@
 <?php 
 session_start();
-
+$order_id =0 ;
 $user_id = $_SESSION['loggeduser'];
 function GoToProfilepage(){
-    echo '
-    <a href="product.php">
-    you have been checked out back to profile 
-    </a>
-    ';
+    global $order_id ;
+    header('location:orderdetail.php?order_id='.$order_id);
+
 }
 
 
@@ -51,6 +49,7 @@ function AddOrder(){
 }
 function AddToCart(){
     global $user_id ;
+    global $order_id ;
  $q1 = "
  SELECT * FROM `orders` 
  ";

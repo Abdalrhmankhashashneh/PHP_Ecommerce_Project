@@ -92,7 +92,7 @@ function ViewCartData(){
 
 
 	<!-- breadcrumb -->
-	<div class="container">
+	<div class="container" style="    margin-top: 70px;">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
@@ -145,17 +145,17 @@ function ViewCartData(){
 <?php if($op){ ?>
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-<?php if(isset($_GET['e'])){
-	echo '
-	<div class="alert alert-danger" role="alert">
-	please logged in to check out your order <a class="btn btn-primary" href="login.php" >Log in</a>
-   </div>	
-	';
-}?>
+
 					<h4 class="mtext-109 cl2 p-b-30">
 							Cart Totals
 						</h4>
-
+<?php if(isset($_GET['E'])){
+	echo '
+	<div class="alert alert-danger" role="alert">
+	please logged in to check out your order <br><br> <a class="btn btn-primary" href="login.php" >Log in</a>
+   </div>	
+	';
+}?>
 						<div class="flex-w flex-t bor12 p-b-13">
 				
 						</div>
