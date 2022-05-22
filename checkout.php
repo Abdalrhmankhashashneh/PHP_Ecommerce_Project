@@ -1,15 +1,17 @@
 <?php 
 session_start();
-if(isset($_SESSION['loggeduser'])){
-    header('location:shoping-cart.php?E=true');
-}
+
 $user_id = $_SESSION['loggeduser'];
 function GoToProfilepage(){
-    header('Location:/profile.php');
+    echo '
+    <a href="product.php">
+    you have been checked out back to profile 
+    </a>
+    ';
 }
 
 
-function ConnectToDatabase(){
+
     try {
         $db = new PDO('mysql:host=localhost;dbname=ecommerce' , 'root' , '');
     $GLOBALS['db'] = $db ;
@@ -17,8 +19,8 @@ function ConnectToDatabase(){
     catch (PDOEexception $e) {
     echo 'not connect ' . $e.getMessage(); 
     }
-    }
-    ConnectToDatabase();
+    
+    
 
     function ViewCartData(){
         echo "<h1> cart </h1>";
@@ -34,39 +36,33 @@ function ConnectToDatabase(){
         }
 }
 function AddOrder(){
+    $total = 0 ;
+    global $user_id ;
     foreach ( $_SESSION['Cart'] as $v) {
-       global $user_id ;
+       
         $total +=$v['total']   ;
         }
         
      $q1 = "
-     INSERT INTO `order` (`order_id`, `user_id`, `total`)
-      VALUES (NULL, '$user_id', '$total');
+     INSERT INTO `orders` (`order_id`, `order_date`, `user_id`, `invoice`)
+      VALUES (NULL,NOW(), '$user_id', '$total');
      ";
      $GLOBALS['db']->exec($q1);
 }
 function AddToCart(){
     global $user_id ;
  $q1 = "
- SELECT * FROM `order` WHERE 1
+ SELECT * FROM `orders` 
  ";
  $data = $GLOBALS['db']->query($q1);
  
- foreach($data as $key => $v){
+ foreach($data as $v){
      $order_id = $v['order_id']; 
  }
  foreach ( $_SESSION['Cart'] as $v) {
      
- /*
-  "cart_id" => "$pro_id" ,
-        "total" => "$total",
-        "quantity"=>"$quantity" ,
-        "pro_id" => "$pro_id",
-        "pro_name" => "$pro_name",
-        "pro_price" => "$pro_price",
-        "pro_img" => "$pro_img"
- */
-    $pro_id = $_GET['pro_id'];
+
+    $pro_id = $v['pro_id'];
 
            
        
@@ -74,9 +70,9 @@ function AddToCart(){
         $pro_id = $v['pro_id'];
         $quantity = $v['quantity'];
         $q1 = "
-        INSERT INTO `cart` (`cart_id`, `product_id`, `total`, `quantity`, `order_id`, `user_id`)
-         VALUES (NULL, '$pro_id', '$total', '$quantity', '$order_id', '$user_id');
-        
+        INSERT INTO `cart` (`cart_id`, `product_id`, `product_quntity`, `order_id`, `user_id`, `total`)
+         VALUES (NULL, '$pro_id', '$quantity', '$order_id', '$user_id' , '$total');
+         
         ";
         $GLOBALS['db']->exec($q1);
       
@@ -91,11 +87,16 @@ function RemoveFromCart(){
     $GLOBALS['db']->exec($q2);   
 
 }
-$q = "
-					SELECT * FROM `product` WHERE product_id = 2
-					";
-                    $row = $GLOBALS['db']->exec($q2);  
-AddOrder();
-AddToCart();
-GoToProfilepage();
+  
+
+                    
+                    if(isset($_SESSION['loggeduser'])){
+                        AddOrder();
+                        AddToCart();
+                        GoToProfilepage();
+                    }
+                    else{
+                            header('location:shoping-cart.php?E=true');
+                    }
+                    
 

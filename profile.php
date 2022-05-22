@@ -36,10 +36,10 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/login.css" >
- 
+    <?php include 'include/style.php' ?> 
 </head>
   <body>
-      
+  <?php include 'include/header.php' ?> 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -61,7 +61,7 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                 </ol>
               </nav> -->
               <!-- /Breadcrumb -->
-        <h1 class="text-center">My profile</h1><br><br>
+        <h1 class="text-center" style="margin-top: 150px;">My profile</h1><br><br>
               <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
                   <div class="card">
