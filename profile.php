@@ -39,9 +39,12 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
     <?php include 'include/style.php' ?> 
 </head>
   <body>
-  <?php include 'include/header.php' ?> 
-  	<!-- Cart -->
-	<?php include 'include/smal_cart.php'; ?> 
+<!-- Header -->
+<?php include 'include/header.php' ?> 
+
+<!-- Cart -->
+<?php include 'include/smal_cart.php'; ?> 
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -188,7 +191,7 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
 
 
                  
-
+<?php include 'include/js.php' ?> 
   </body>
 </html>
 

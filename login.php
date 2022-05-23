@@ -77,6 +77,7 @@ header('Location:profile.php');
 
 ?>
 <?php include 'include/js.php'; ?>
+<?php include 'include/js.php'; ?>
 </body>
 
 </html>

@@ -11,7 +11,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="https://cdn.discordapp.com/attachments/976178851434618890/978200479119056947/sotol_logo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -28,6 +28,12 @@
 
 							<li  >
 								<a href="shoping-cart.php">shopping cart</a>
+							</li>
+							<li  >
+								<a href="about.php">About</a>
+							</li>
+							<li  >
+								<a href="contact.php">Contact</a>
 							</li>
 							<?php
 if(isset($_SESSION['loggeduser'])){
@@ -80,7 +86,7 @@ else{
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.php"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="https://cdn.discordapp.com/attachments/976178851434618890/978200479119056947/sotol_logo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
