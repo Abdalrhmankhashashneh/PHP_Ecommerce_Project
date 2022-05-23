@@ -26,7 +26,7 @@ $_SESSION['Cart'] =  array();
 	<section class="section-slide">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1" style="background-image: url(https://images.pexels.com/photos/1358900/pexels-photo-1358900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
+				<div class="item-slick1" style="background-image: url(https://media.istockphoto.com/photos/wooden-tabletop-over-defocused-kitchen-background-picture-id1071414426?k=20&m=1071414426&s=170667a&w=0&h=tHYU5YqhgADdEOVuQPuwGfNFcN1sTqE3uRPKqP5vzQo=);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -51,7 +51,7 @@ $_SESSION['Cart'] =  array();
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(https://images.pexels.com/photos/1194436/pexels-photo-1194436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
+				<div class="item-slick1" style="background-image: url(https://img.freepik.com/free-photo/modern-kitchen-white-room-interior-3drender_33739-476.jpg?w=1060);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
