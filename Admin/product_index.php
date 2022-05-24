@@ -145,7 +145,13 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
                                 </tr>
-                    <?php endforeach;?>
+                    <?php
+                    
+                
+                endforeach;
+                
+                
+                    ?>
 
                 </tbody>
             </table>

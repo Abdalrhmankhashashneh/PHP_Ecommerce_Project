@@ -1,15 +1,21 @@
 <?php 
 
 session_start(); 
+include 'include/db.php';
+$m =false;
 $op = false ;
-$total_cart = 0 ;
+if(!isset($_SESSION['total'])){
+	$_SESSION['total'] = 0;
+} 
+
 function ViewCartData(){
 	global $total_cart ; 
 	if(isset($_SESSION['Cart'])){
 		global $op ;
 		foreach ($_SESSION['Cart'] as $value) {
 			$op = true ;
-			$total_cart += $value['total'];
+			$_SESSION['total'] = 0;
+			$_SESSION['total'] += $value['total'];
 			echo '
 			<tr class="table_row">
 			<td class="column-1">
@@ -43,7 +49,22 @@ function ViewCartData(){
 	
 	}
 
-
+	if(isset($_POST['coupon'])){
+		$Code =$_POST['coupon'] ;
+	$q="
+	SELECT *  FROM coupon WHERE coupon_code = $Code
+	";
+	$data = $GLOBALS['db']->query($q);
+		foreach($data as $value){
+			if($value['coupon_code'] == $Code){
+				$_SESSION['total'] = $_SESSION['total'] *  $value['discount'];
+			}
+				else{
+					$m = true ;
+				}
+			
+		}
+	}
 
 
 
@@ -108,11 +129,17 @@ function ViewCartData(){
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
-								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-									
-								<div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-									Apply coupon
-								</div>
+								<form action="" method="post">
+								<?php if($m){
+	echo '
+	<div class="alert alert-danger" role="alert">
+	your copun dose not work or expire
+   </div>	
+	';
+}?>
+									<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
+									<input type="submit" class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="Apply coupon">
+								</form>
 							</div>
 
 							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
@@ -186,7 +213,7 @@ function ViewCartData(){
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$<?php echo $total_cart;?>
+									$<?php echo $_SESSION['total']?>
 								</span>
 							</div>
 						</div>
