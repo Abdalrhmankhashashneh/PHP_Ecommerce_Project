@@ -5,7 +5,7 @@ include "security.php";
 include "include/connect.php";
 include "include/navbar.php";
 
-$satement = $conn->prepare('SELECT * FROM `subcategory` ORDER BY subcategory_id DESC');
+$satement = $conn->prepare('SELECT subcategory.subcategory_id,subcategory.subcategory_name,subcategory.subcategory_img,subcategory.subcategory_des,category.category_name FROM `subcategory` LEFT JOIN category on subcategory.category_id= category.category_id');
 $satement->execute();
 $sub_categories = $satement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -120,7 +120,7 @@ $publish = $sta->fetchAll();
                                     <td><?php echo "<img src=" . $sub_category["subcategory_img"] . " width=100px height=100px>" ?></td>
                                     <td><?php echo $sub_category["subcategory_name"] ?></td>
                                     <td><?php echo $sub_category["subcategory_des"] ?></td>
-                                    <td><?php echo $sub_category["category_id"] ?></td>
+                                    <td><?php echo $sub_category["category_name"] ?></td>
                                     <td>
 
                                         <form action="subcat_update.php" method="post" enctype="multipart/form-data">

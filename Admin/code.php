@@ -158,11 +158,7 @@ if (isset($_POST['add_category'])) {
 
             }
 
-        } else {
-            $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-            header("Location: cat_index.php");
-
-        }
+        } 
 
     }
 
@@ -260,11 +256,7 @@ if (isset($_POST['edit_category'])) {
 
                 }
 
-            } else {
-                $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-                header("Location: cat_index.php");
-
-            }
+            } 
 // echo "helllo";
 
         }
@@ -348,10 +340,6 @@ $state = false;
 
             }
 
-        } else {
-            $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-            header('Location: subcat_index.php');
-
         }
     }
 
@@ -411,10 +399,6 @@ if (isset($_POST['add_subcategory'])) {
 
         }
 
-    } else {
-        $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-        header('Location: subcat_index.php');
-
     }}
 
 //***************************ADD Product************************************* */
@@ -473,11 +457,7 @@ if (isset($_POST['add_product'])) {
 
         }
 
-    } else {
-        $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-        header('Location: product_index.php');
-
-    }
+    } 
 
 }
 /**********************Edit Product******************** */
@@ -561,10 +541,6 @@ $state = false;
                 header('Location: product_index.php');
 
             }
-
-        } else {
-            $_SESSION['status'] = "PASSWORD and CONFIRM PASSWORD DOES NOT MATCH";
-            header('Location: product_index.php');
 
         }
     }

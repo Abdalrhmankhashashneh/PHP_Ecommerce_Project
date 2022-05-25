@@ -42,7 +42,7 @@ if (isset($_POST['edit_cat'])) {
                 <div class="form-group">
                     <label for="Discription">
                         Discription
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="cat_desc" vaue="<?php echo  $info[category_des]?>"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="cat_des" vaue="<?php echo  $info[category_des]?>"></textarea>
                     </label>
                 </div>
 

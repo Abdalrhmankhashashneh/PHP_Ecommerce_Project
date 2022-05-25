@@ -5,9 +5,14 @@ include "security.php";
 include "include/connect.php";
 include "include/navbar.php";
 
-$satement = $conn->prepare('SELECT * FROM `product` ORDER BY product_id DESC');
-$satement->execute();
-$products = $satement->fetchAll(PDO::FETCH_ASSOC);
+// $satement = $conn->prepare('SELECT * FROM `product` ORDER BY product_id DESC');
+// $satement->execute();
+// $products = $satement->fetchAll(PDO::FETCH_ASSOC);
+// $ss="'SELECT * FROM `product` INNER JOIN subcategory on product.sub_category_id= subcategory.subcategory_id;'";
+$query="SELECT `product_id`,`product_name`,`product_price`,`product_img`,SUBSTRING(`product_des`,1,100) AS Description,`sub_category_id`,subcategory.subcategory_name FROM `product` INNER JOIN subcategory on product.sub_category_id= subcategory.subcategory_id;";
+$satement2 = $conn->prepare($query);
+$satement2->execute();
+$product2 = $satement2->fetchAll();
 
 ?>
 
@@ -111,23 +116,25 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                         <th>No.</th>
                         <th>Name</th>
                         <th>Image</th>
-                        <th>Price</th>
                         <th>Discription</th>
+                        <th>Price</th>
                         <th>Sub-category id</th>
                         <th>EDIT</th>
                         <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($products as $i => $product): ?>
+                    <?php foreach ($product2 as $i => $product): ?>
+
 
                                 <tr>
                                     <th ><?php echo $i + 1; ?></th>
                                     <td><?php echo "<img src=" . $product["product_img"] . " width=100px height=100px>" ?></td>
                                     <td><?php echo $product["product_name"] ?></td>
-                                    <td><?php echo $product["product_des"] ?></td>
+                                    <td><?php echo $product["Description"] ?></td>
                                     <td><?php echo $product["product_price"] ?></td>
-                                    <td><?php echo $product["sub_category_id"] ?></td>
+                                    <td><?php echo $product["subcategory_name"] ?></td>
+                                   
                                     <td>
 
                                         <form action="product_update.php" method="post" enctype="multipart/form-data">
@@ -145,13 +152,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 
                                 </tr>
-                    <?php
-                    
-                
-                endforeach;
-                
-                
-                    ?>
+                    <?php endforeach;?>
 
                 </tbody>
             </table>

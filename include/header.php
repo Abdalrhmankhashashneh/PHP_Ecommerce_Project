@@ -9,15 +9,15 @@ if(isset($_SESSION['Cart'])){
 
 <header>
 		<!-- Header desktop -->
-		<div class="container-menu-desktop">
+		<div class="container-menu-desktop fix-menu-desktop" >
 			<!-- Topbar -->
 
-			<div class="wrap-menu-desktop">
-				<nav class="limiter-menu-desktop container">
+			<div class="wrap-menu-desktop" style="  top: 0px;">
+				<nav class="limiter-menu-desktop container ">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/sotol_logo.png" alt="IMG-LOGO">
+					<a href="#" class="logo" style="height : 70px;">
+						<img src="images/kitchenstorelogo.png" height="100px" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -91,8 +91,8 @@ else{
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
-			<div class="logo-mobile">
-				<a href="index.php"><img src="images/sotol_logo.png" alt="IMG-LOGO"></a>
+			<div class="logo-mobile" style="height : 60px;">
+				<a href="index.php"><img src="images/kitchenstorelogo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->

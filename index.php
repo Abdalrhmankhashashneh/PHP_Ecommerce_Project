@@ -105,7 +105,7 @@ $_SESSION['Cart'] =  array();
 
 
 	<!-- Banner -->
-	<div class="sec-banner bg0 p-t-80 p-b-50" style="text-align=center;">
+	<div class="sec-banner bg0 p-t-80 p-b-50" style="text-align=center;     padding-bottom: 0px;">
 		<div class="container">	<h1 style="    width: 100%;
     text-align: center;
     margin-bottom: 50px;
