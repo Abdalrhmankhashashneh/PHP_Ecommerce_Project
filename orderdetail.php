@@ -148,8 +148,8 @@ label.radio input:checked + span {
         <div class="row no-gutters">
             <div class="col-md-8">
                 <div class="product-details mr-2">
-                    <a href="profile.php">
-                    <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Back to profile </span></div>
+                    <a href="profile.php" class="btn btn-primary">
+                    <div class="d-flex flex-row align-items-center"></i><span class="ml-2">Back to profile </span></div>
                     </a>
                     <hr>
                     

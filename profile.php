@@ -37,6 +37,169 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/login.css" >
     <?php include 'include/style.php' ?> 
+    <style>
+      body{margin-top:20px;}
+/*-------- 27. My account style ---------*/
+.myaccount-tab-menu {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.myaccount-tab-menu a {
+  border: 1px solid #ccc;
+  border-bottom: none;
+  font-weight: 600;
+  font-size: 13px;
+  display: block;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  color:#666666;
+}
+
+.myaccount-tab-menu a:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
+.myaccount-tab-menu a:hover, .myaccount-tab-menu a.active {
+    background-color: #45a7b4;
+    border-color: #45a7b4;
+    color: #ffffff;
+}
+
+.myaccount-tab-menu a i.fa {
+  font-size: 14px;
+  text-align: center;
+  width: 25px;
+}
+
+@media only screen and (max-width: 767px) {
+  #myaccountContent {
+    margin-top: 30px;
+  }
+}
+
+.myaccount-content {
+  border: 1px solid #eeeeee;
+  padding: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+  .myaccount-content {
+    padding: 20px 15px;
+  }
+}
+
+.myaccount-content form {
+  margin-top: -20px;
+}
+
+.myaccount-content h3 {
+  font-size: 20px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.myaccount-content .welcome a:hover {
+  color: #ff6e21;
+}
+
+.myaccount-content .welcome strong {
+  font-weight: 600;
+    color: #2e9aa8;
+}
+
+.myaccount-content fieldset {
+  margin-top: 20px;
+}
+
+.myaccount-content fieldset legend {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.myaccount-content .account-details-form {
+  margin-top: 50px;
+}
+
+.myaccount-content .account-details-form .single-input-item {
+  margin-bottom: 20px;
+}
+
+.myaccount-content .account-details-form .single-input-item label {
+  font-size: 14px;
+  text-transform: capitalize;
+  display: block;
+  margin: 0 0 5px;
+}
+
+.myaccount-content .account-details-form .single-input-item input {
+  border: 1px solid #e8e8e8;
+  height: 50px;
+  background-color: transparent;
+  padding: 2px 20px;
+  color: #1f2226;
+  font-size: 13px;
+}
+
+.myaccount-content .account-details-form .single-input-item input:focus {
+  border: 1px solid #343538;
+}
+
+.myaccount-content .account-details-form .single-input-item button {
+  border: none;
+  background-color: #266b74;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 9px 25px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.myaccount-content .account-details-form .single-input-item button:hover {
+  background-color: #1f2226;
+}
+
+.myaccount-table {
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.myaccount-table table th,
+.myaccount-table .table th {
+  padding: 10px;
+  font-weight: 600;
+  background-color: #f8f8f8;
+  border-color: #ccc;
+  border-bottom: 0;
+  color: #1f2226;
+}
+
+.myaccount-table table td,
+.myaccount-table .table td {
+  padding: 10px;
+  vertical-align: middle;
+  border-color: #ccc;
+}
+
+.saved-message {
+  background-color: #fff;
+  border-top: 3px solid #ff6e21;
+  font-size: 14px;
+  padding: 20px 0;
+  color: #333;
+}
+.containerx{
+  margin-top : 100px ;
+}
+    </style>
 </head>
   <body>
 <!-- Header -->
@@ -53,101 +216,47 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
+    <div class="containerx">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- My Account Page Start -->
+                        <div class="myaccount-page-wrapper">
+                            <!-- My Account Tab Menu Start -->
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4">
+                                    <div class="myaccount-tab-menu nav" role="tablist">
+                                        <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
+                                            Dashboard</a>
+                                        <a href="#orders" data-toggle="tab" class=""><i class="fa fa-cart-arrow-down"></i> Orders</a>
+                                                                                <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
+                                            Method</a>
+                                        <a href="#address-edit" data-toggle="tab" class=""><i class="fa fa-map-marker"></i> address</a>
+                                        <a href="#account-info" data-toggle="tab" class=""><i class="fa fa-user"></i> Account Details</a>
+                                        <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                    </div>
+                                </div>
+                                <!-- My Account Tab Menu End -->
+                                <!-- My Account Tab Content Start -->
+                                <div class="col-lg-9 col-md-8">
+                                    <div class="tab-content" id="myaccountContent">
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade active show" id="dashboad" role="tabpanel">
+                                            <div class="myaccount-content ">
+                                                <h3>Dashboard</h3>
+                                                <div class="welcome">
+                                                    <p>Hello, <strong><?php echo $row['username']; ?></strong> (If Not <strong><?php echo $row['username']; ?> !</strong><a href="profile.php?logout=true" class="logout"> Logout</a>)</p>
+                                                </div>
 
-
-    <div class="container">
-        <div class="main-body">
-        
-              <!-- Breadcrumb -->
-              <!-- <nav aria-label="breadcrumb" class="main-breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                  <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                </ol>
-              </nav> -->
-              <!-- /Breadcrumb -->
-        <h1 class="text-center" style="margin-top: 150px;">My profile</h1><br><br>
-              <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex flex-column align-items-center text-center"><br>
-                        <img src="https://cdn.iconscout.com/icon/free/png-256/user-avatar-contact-portfolio-personal-portrait-profile-1-5182.png" alt="Admin" class="rounded-circle" width="150"><br>
-                        <div class="mt-3">
-                          <h4><?php echo $row['username'];?></h4><br>
-                          <!-- <p class="text-secondary mb-1">Full Stack Developer</p>
-                          <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
-                          <!-- <button class="btn btn-primary">Follow</button>
-                          <button class="btn btn-outline-primary">Message</button> -->
-                          <br>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card mt-3">
-                    <!--  -->
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">User Name</h6>
-                        </div>
-                        <div class="col-sm-9 text-info">
-                       <?php  echo $row['username'];?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Email</h6>
-                        </div>
-                        <div class="col-sm-9 text-info">
-                        <?php echo $row['email'];?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Phone</h6>
-                        </div>
-                        <div class="col-sm-9 text-info">
-                          <?php echo $row['phone'];?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">City</h6>
-                        </div>
-                        <div class="col-sm-9 text-info">
-                        <?php echo $row['city'];?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Address</h6>
-                        </div>
-                        <div class="col-sm-9 text-info">
-                        <?php echo $row['address'];?>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <a class="btn btn-info "  href="updateuser.php">Edit</a>
-                          <a class="btn btn-danger "  href="?logout=true">Log out </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </table>
-                  <h1> Your Order : </h1>
-<table class="table">                  
+                                                <p class="mb-0">From your account dashboard. you can easily check &amp; view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Single Tab Content End -->
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade" id="orders" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Orders</h3>
+                                                <div class="myaccount-table table-responsive text-center">
+                                                <table class="table">                  
   
   <thead class="thead-dark">
     <tr>
@@ -187,6 +296,98 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
   
 
 </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Tab Content End -->
+                                        <!-- Single Tab Content Start -->
+                                                    <!-- Single Tab Content End -->
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Payment Method</h3>
+                                                <p class="saved-message">You Can't Saved Your Payment Method yet. we just provid cash on delivery </p>
+                                            </div>
+                                        </div>
+                                        <!-- Single Tab Content End -->
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade " id="address-edit" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Billing Address</h3>
+                                                <?php if(isset($_GET['address'])){ 
+                                                  echo '
+                                                  <div class="single-input-item">
+                                                  <label for="display-name" class="required">Display Name</label>
+                                                  <input type="text" id="display-name" value="'.$row['address'].' ">
+                                                  <a href="profile.php">
+                                                  <input type="submit" id="display-name" value="Change Address">
+                                                  </a>
+                                                  </div>
+                                                  ';
+                                                 }
+                                                 else{
+                                                 ?>
+                                                <address>
+                                                    <p><strong><?php echo $row['username']; ?></strong></p>
+                                                    <p><?php echo $row['address']; ?></p>
+                                                        <p>Mobile: <?php echo $row['phone']; ?> </p>
+                                                </address>
+                                                <a href="?address=true" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a>
+                                                <?php } ?>
+                                              </div>
+                                        </div>
+                                        <!-- Single Tab Content End -->
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Account Details</h3>
+                                                <div class="account-details-form">
+                                                    <form action="#">
+                                                        <div class="row">
+                                                       
+                                                         
+                                                        </div>
+                                                        <div class="single-input-item">
+                                                            <label for="display-name" class="required">Display Name</label>
+                                                            <input type="text" id="display-name" value="<?php echo $row['username']; ?>">
+                                                        </div>
+                                                 
+                                                        <fieldset>
+                                                            <legend>Password change</legend>
+                                                            <div class="single-input-item">
+                                                                <label for="current-pwd" class="required">Current Password</label>
+                                                                <input type="password" id="current-pwd">
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="single-input-item">
+                                                                        <label for="new-pwd" class="required">New Password</label>
+                                                                        <input type="password" id="new-pwd">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="single-input-item">
+                                                                        <label for="confirm-pwd" class="required">Confirm Password</label>
+                                                                        <input type="password" id="confirm-pwd">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                        <div class="single-input-item">
+                                                            <button class="check-btn sqr-btn ">Save Changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div> <!-- Single Tab Content End -->
+                                    </div>
+                                </div> <!-- My Account Tab Content End -->
+                            </div>
+                        </div> <!-- My Account Page End -->
+                    </div>
+                </div>
+            </div>                  
+
 
 
 

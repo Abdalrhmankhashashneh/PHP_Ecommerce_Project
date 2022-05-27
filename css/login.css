@@ -3,12 +3,11 @@
 }
 
 #myDiv {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2a1;
     width: 500px;
     margin: auto;
     padding: 10px 20px;
     border-radius: 5px;
-
 }
 
 input[type=text],

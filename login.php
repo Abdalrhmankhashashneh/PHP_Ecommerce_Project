@@ -6,6 +6,30 @@ if(isset($_SESSION['loggeduser'])){
 }
 
 
+
+
+require "config.php";
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $login = "SELECT * FROM user WHERE password='$password' and email='$email' ";
+
+    $result = $pdo->query($login);
+    $user = $result->fetch();
+    $count = $result->rowCount();
+
+
+    if ($count == 1) {
+
+        $_SESSION['loggeduser'] = $user['user_id'];
+
+        @header('Location:profile.php');
+    } 
+
+}
+
 ?>
 <html>
 <head>
@@ -18,9 +42,23 @@ if(isset($_SESSION['loggeduser'])){
 	<script src="js/script_login.js"></script>
 </head>
 
+<style>
+ body{
+        background:url(images/aas.jpg);
+        background-size: cover;
+         filter:grayscale(60%);
+overflow:hidden;
+
+    }
+
+
+</style>
+}
+
 <body>
-<!-- Header -->
-<?php include 'include/header.php' ?> 
+    <!-- Header -->
+    <?php include 'include/header.php'?>
+
 
 <!-- Cart -->
 <?php include 'include/smal_cart.php'; ?> 
@@ -44,38 +82,36 @@ if(isset($_SESSION['loggeduser'])){
 </div>
 
 
-
 <?php
 
-require "config.php";
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-if(isset($_POST['login'])){
-$email=$_POST['email'];
-$password=$_POST['password'];
+    $login = "SELECT * FROM user WHERE password='$password' and email='$email' ";
 
-$login= "SELECT * FROM user WHERE password='$password' and email='$email' ";
- 
+    $result = $pdo->query($login);
+    $user = $result->fetch();
+    $count = $result->rowCount();
 
-$result=$pdo->query($login);
-$user=$result->fetch();
-$count=$result->rowCount();
+    if ($count == 1) {
 
-if($count==1){
+        $_SESSION['loggeduser'] = $user['user_id'];
 
-$_SESSION['loggeduser']=$user['user_id'];
-header('Location:profile.php');
-}else{
-	echo "<h3 style='color:red'>Invalid user name and password</h3>";
-}
+        @header('Location:profile.php');
+    } else {
+        echo "<h3 style='color:red'>Invalid user name and password</h3>";
+    }
 
 }
-
-
-
-
 
 
 ?>
+
+
+
+
+
 <?php include 'include/js.php'; ?>
 <?php include 'include/js.php'; ?>
 </body>

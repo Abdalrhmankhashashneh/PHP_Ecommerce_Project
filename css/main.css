@@ -516,7 +516,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   min-width: 15px;
   height: 15px;
   padding: 0 3px;
-  background-color: #717fe0;
+  background-color: #45a7b4;
 }
 
 /*---------------------------------------------*/
@@ -2072,7 +2072,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .block1-txt:hover {
-  background-color: rgba(103, 117, 214, 0.8);
+  background-color: #17a2b857;
 }
 
 .block1-txt:hover .block1-txt-child2 {
@@ -2189,7 +2189,9 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .cl2 {
-  color: #333;
+  color: #3a6872;
+      background-color: whitesmoke;
+      opacity: 80%;
 }
 
 .cl3 {
@@ -2744,7 +2746,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .bg1 {
-  background-color: #717fe0;
+  background-color: #17a2b8b0;
 }
 
 .bg2 {

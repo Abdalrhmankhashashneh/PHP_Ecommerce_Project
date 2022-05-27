@@ -1,4 +1,5 @@
 <?php  
+require "config.php";
 $cart_count =  0 ; 
 if(isset($_SESSION['Cart'])){
 	foreach($_SESSION['Cart'] as $v){
@@ -17,72 +18,69 @@ if(isset($_SESSION['Cart'])){
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo" style="height : 70px;">
-						<img src="images/kitchenstorelogo.png" height="100px" alt="IMG-LOGO">
+						<img src="images/logo2.png" height="100px" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-						<li>
+							<li>
 								<a href="index.php">Home</a>
-								</li>
+							</li>
 							
-
 							<li>
 								<a href="product.php">Shop</a>
 							</li>
 
-							<li  >
-								<a href="shoping-cart.php">Shopping cart</a>
-							</li>
-							<li  >
-								<a href="about.php">About</a>
-							</li>
-							<li  >
+							<li>
 								<a href="contact.php">Contact</a>
 							</li>
-							<?php
-if(isset($_SESSION['loggeduser'])){
-
-echo '
-							<li>
-								<a href="profile.php?logout=true">Log out </a>
-							</li>
-							<li>
-								<a href="profile.php">Profile </a>
-							</li>
-	';
-}
-else{
-	echo '
-
-	<li>
-		<a href="login.php">Login</a>
-	</li>
-
-	<li>
-		<a href="Register.php">Regester</a>
-	</li>
-';	
-}
-?>
 	
 							</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
+				
+					<?php
+if(isset($_SESSION['loggeduser'])){
+	$user_id=$_SESSION['loggeduser'];
+	$viewuser="SELECT * FROM user WHERE user_id ='$user_id' ";
+	$result=$pdo->query($viewuser);
+	$row=$result->fetch(PDO::FETCH_ASSOC);
+	
+echo '<a href="profile.php?logout=true">	
+								<i class="zmdi zmdi-power" style="font-size: 13pt;
+								color: #666666;"> Log out</i>
+							</a>	
+							<a href="profile.php" class="dis-block icon-header-item  hov-cl1 trans-04 p-l-22 p-r-11 " style="font-size: 14pt;">
+							<i class="zmdi zmdi-account-circle"> '.$row['username'].'</i>
+						</a>	
+						
+							
+						
+							
+						
+	';
+}
+else{
+	echo '
+	<a href="login.php">	
+	<i class="zmdi zmdi-account-o" style="font-size: 15pt; color: black; "> Log In</i>
+	</a>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php echo $cart_count ; ?>">
+
+	
+';	
+}
+?>	<div class="icon-header-item  hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php echo $cart_count ; ?>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
-
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+					
+						
+						
+						
+					
 					</div>
 				</nav>
 			</div>	
@@ -92,16 +90,16 @@ else{
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile" style="height : 60px;">
-				<a href="index.php"><img src="images/kitchenstorelogo.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="images/logo2.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+				<div class="icon-header-item  hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?php echo $cart_count; ?>">
+				<div class="icon-header-item  hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?php echo $cart_count; ?>" >
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
@@ -137,37 +135,9 @@ else{
 				</li>
 
 				<li>
-					<a href="about.php">About</a>
-				</li>
-
-				<li>
 					<a href="contact.php">Contact</a>
 				</li>
-				<?php
-				if(isset($_SESSION['loggeduser'])){
 
-					echo '
-												<li>
-													<a href="profile.php?logout=true">Log out </a>
-												</li>
-												<li>
-													<a href="profile.php">Profile </a>
-												</li>
-						';
-					}
-					else{
-						echo '
-					
-						<li>
-							<a href="login.php">Login</a>
-						</li>
-					
-						<li>
-							<a href="Register.php">Regester</a>
-						</li>
-					';	
-					}
-					?>
 			</ul>
 		</div>
 

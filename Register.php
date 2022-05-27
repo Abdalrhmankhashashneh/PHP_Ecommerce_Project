@@ -14,12 +14,20 @@ if(isset($_SESSION['loggeduser'])){
 	<link rel="stylesheet" type="text/css" href="css/login.css" >
 	<script src="js/script_register.js"></script>
 	<style>
+ body{
+        background:url(images/aas.jpg);
+        background-size: cover;
+         filter:grayscale(60%);
+
+    }
 
 
 	</style>
 </head>
 
 <body>
+	   
+
 <div id="myDiv">
   <h2 style="text-align:center"> Registration Form </h2>
   <form id="form" onsubmit="return validation()" method="post" name="regForm"  action="">

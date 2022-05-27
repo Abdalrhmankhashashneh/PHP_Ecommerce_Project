@@ -1,5 +1,8 @@
 <?php
 session_start();
+include 'include/db.php';
+
+
 if(!isset($_SESSION['Cart'])){
 $_SESSION['Cart'] =  array();
 }?>
@@ -27,7 +30,7 @@ $_SESSION['Cart'] =  array();
 		<div class="wrap-slick1">
 			<div class="slick1">
 				
-				<div class="item-slick1" style="background-image: url(https://img.freepik.com/free-photo/modern-kitchen-white-room-interior-3drender_33739-476.jpg?w=1060);">
+				<div class="item-slick1" style="background-image: url(images/k4.jpg)">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -43,14 +46,14 @@ $_SESSION['Cart'] =  array();
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="item-slick1" style="background-image: url(https://media.istockphoto.com/photos/wooden-tabletop-over-defocused-kitchen-background-picture-id1071414426?k=20&m=1071414426&s=170667a&w=0&h=tHYU5YqhgADdEOVuQPuwGfNFcN1sTqE3uRPKqP5vzQo=);">
+				<div class="item-slick1" style="background-image: url(images/k3.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -62,7 +65,6 @@ $_SESSION['Cart'] =  array();
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									2022 
 								</h2>
 							</div>
 								
@@ -76,29 +78,7 @@ $_SESSION['Cart'] =  array();
 				</div>
 
 
-				<div class="item-slick1" style="background-image: url(https://images.pexels.com/photos/271647/pexels-photo-271647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
-					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-								Cooking Equipment
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									New arrivals
-								</h2>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Shop Now
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</section>
@@ -114,7 +94,7 @@ $_SESSION['Cart'] =  array();
 			<div class="row">
 			
 			<?php
-include 'include/db.php';
+
 function ViewwSubCategory(){
 	$q = "
 	SELECT * FROM `category`
@@ -160,7 +140,89 @@ ViewwSubCategory();
 
 
 	<!-- Product -->
+	 <!-- <hr style=" margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);/"> -->
+<!-- <div class="container">
+<div class="  col-xs-6 " style=" background-color:gray;">
+fdreg
+</div>
+</div> -->
+    <!-- Content page -->
+  
+	<!-- Banner -->
+	<div class="sec-banner bg0 p-t-80 p-b-50" style="text-align=center;     padding-bottom: 0px;">
+		<div class="container">	<h1 style="    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-weight: 700;">Featured Products </h1>
+			<div class="row">
+			
+			<?php
+include 'include/viewpro.php';
 
+ViewPro();	
+    
+
+?>
+<?php 
+	include 'include/detailproduct.php';
+	include 'include/db.php';
+
+				if(isset($_GET['actiona'])){
+					include 'include/db.php';
+					$pro_id = $_GET['pro_id'];
+					$q = "
+					SELECT * FROM `product` WHERE product_id = $pro_id
+					";
+					$result = $GLOBALS['db']->query($q); 
+					$row=$result->fetch(PDO::FETCH_ASSOC);
+					
+					
+					if(isset($_GET['pro_id'])){
+						
+   
+      
+							$pro_id = $row['product_id'];
+							$quantity = 1 ; 
+							$op = true ; 
+							$pro_name = $row['product_name'];
+							$total = $row['product_price'];
+							$pro_img = $row['product_img'];
+							$pro_price = $row['product_price'];
+					
+							$product = array
+							( 
+							"cart_id" => "$pro_id" ,
+							"total" => "$total",
+							"quantity"=>"$quantity" ,
+							"pro_id" => "$pro_id",
+							"pro_name" => "$pro_name",
+							"pro_price" => "$pro_price",
+							"pro_img" => "$pro_img"
+							); 
+							
+							foreach($_SESSION['Cart'] as $key => $value ){
+								if($value["pro_id"] == $pro_id ) {
+									$_SESSION['Cart'][$key]['quantity'] =$value["quantity"]+= 1;
+									$_SESSION['Cart'][$key]['total'] = $value['pro_price'] *=   $value["quantity"];
+									$op =false ; 
+								}
+							 }
+							
+							
+						   if($op){
+							array_push($_SESSION['Cart'] , $product);
+						   }
+						}
+					}
+				
+	?>
+
+</div>
+	</div>
 	<!-- Footer -->
 	<?php include 'include/footer.php';?>
 
