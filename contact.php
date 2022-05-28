@@ -1,4 +1,7 @@
-<?php if(!isset($_SESSION['Cart'])){
+
+<?php
+session_start();
+if(!isset($_SESSION['Cart'])){
 	$_SESSION['Cart'] =  array();
 	}
 $op =true;
@@ -14,8 +17,8 @@ $op =true;
         $email = $_POST['email'];
          include 'include/db.php';
          $q="
-         INSERT INTO `contact`(`contact_id`, `contact_email`, `contact_des`, `contact_done`) 
-         VALUES (NULL,'$email','$massage ','false')
+         INSERT INTO `contact`(`contact_id`, `contact_email`, `contact_des`, `contact_done`, `date`) 
+         VALUES (NULL,'$email','$massage ','false',NOW())
          "; 
          $GLOBALS['db']->exec($q);
          

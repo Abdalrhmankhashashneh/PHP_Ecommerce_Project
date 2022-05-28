@@ -76,6 +76,7 @@ overflow:hidden;
 
 		<div align="center">
 		<input type="submit" value="Login" name="login" />
+        <a href="Register.php" style="font-size: medium; font-weight: 600;">or register now </a>
 		
 		<div>
   </form>

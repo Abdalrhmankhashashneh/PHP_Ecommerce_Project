@@ -46,7 +46,7 @@ function ViewSmalCartData(){
 	}
     ?>
 
-<div class="wrap-header-cart js-panel-cart">
+<div class="wrap-header-cart js-panel-cart <?php if(isset($_GET['actiona'])){echo "show-header-cart";}?>">
 		<div class="s-full js-hide-cart"></div>
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">

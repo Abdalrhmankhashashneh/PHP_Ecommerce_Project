@@ -21,6 +21,11 @@ function viweorder(){
          </div>' ;    
         }
     }
+    $order_id = $_GET['order_id'] ;
+    $q="SELECT `invoice` FROM `orders` WHERE order_id = $order_id";
+    $d=$pdo->query($q);
+    $GLOBALS['row'] =$d->fetch(PDO::FETCH_ASSOC);
+    
 }
 ?>
 <!DOCTYPE html>
@@ -156,6 +161,7 @@ label.radio input:checked + span {
                     <?php
                     viweorder();
                     ?>
+                    <h1><br> TOTAL OF ORDER : <?php echo  $GLOBALS['row']['invoice'] ; ?> </h1>
                 </div>
             </div>
             <div class="col-md-4">

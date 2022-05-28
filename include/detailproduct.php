@@ -9,7 +9,7 @@ $q = "
 SELECT * FROM product
 ";
 $data = $GLOBALS['db']->query($q);
-if (isset($_GET['pro_id'])) {
+if (isset($_GET['actionv'])) {
     foreach ($data as $value) {
         if ($value['product_id'] == $_GET['pro_id']) {
             echo '
@@ -61,10 +61,8 @@ if (isset($_GET['pro_id'])) {
 							' . $value['product_des'] . '
                             </p>
 
-										<a href="?actiona=true&pro_id=' . $value['product_id'] . '">
-										<button style = "    margin-top: 50px;"  class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
+										<a href="?actiona=true&pro_id=' . $value['product_id'] . '" style = "    margin-top: 50px;"  class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										Add to cart
 										</a>
 									</div>
 								</div>
