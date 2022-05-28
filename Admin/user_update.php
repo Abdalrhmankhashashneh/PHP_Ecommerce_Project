@@ -4,7 +4,6 @@ include "security.php";
 include_once "include/connect.php";
 include_once "include/navbar.php";
 
-
 if (isset($_POST['edit_user'])) {
     $id = $_POST['edit_id'];
     $query = "SELECT * FROM `user` WHERE `user_id`= $id";
@@ -26,42 +25,42 @@ if (isset($_POST['edit_user'])) {
 
 
 
-<form action="code.php?id=<?php echo $_POST['edit_id']?>" method="post">
+<form action="code.php?id=<?php echo $_POST['edit_id'] ?>" method="post">
           <div class="modal-body">
 
           <div class="form-group">
               <label for="Username" >
                   Username
-                  <input type="text" name="username" class="form-control" placeholder = "Enter Username">
+                  <input type="text" name="username" class="form-control" placeholder = "Enter Username" value=<?php echo $info['username'] ?>>
               </label>
           </div>
           <div class="form-group">
               <label for="Email"> Email
-                  <input type="email" name="email" class="form-control" placeholder = "Enter Email">
+                  <input type="email" name="email" class="form-control" placeholder = "Enter Email" value=<?php echo $info['email'] ?>>
               </label>
           </div>
           <div class="form-group">
               <label for="Password">
                   PASSWORD
-                  <input type="password" name="password" class="form-control" placeholder = "Enter Password">
+                  <input type="password" name="password" class="form-control" placeholder = "Enter Password" value=<?php echo $info['password'] ?>>
               </label>
           </div>
           <div class="form-group">
               <label for="address">
                   Address
-                  <input type="text" name="address" class="form-control" placeholder = "Address">
+                  <input type="text" name="address" class="form-control" placeholder = "Address" value=<?php echo $info['address'] ?>>
               </label>
           </div>
           <div class="form-group">
               <label for="address">
                   City
-                  <input type="text" name="city" class="form-control" placeholder = "City">
+                  <input type="text" name="city" class="form-control" placeholder = "City" value=<?php echo $info['city'] ?>>
               </label>
           </div>
           <div class="form-group">
               <label for="address">
                   Phone
-                  <input type="phone" name="phone" class="form-control" placeholder = "(962) 777 777 777">
+                  <input type="phone" name="phone" class="form-control" placeholder = "(962) 777 777 777" value=<?php echo $info['phone'] ?>>
               </label>
           </div>
       </div>

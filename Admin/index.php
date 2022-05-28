@@ -11,6 +11,12 @@ $satement = $conn->prepare($query);
 $satement->execute();
 $orders = $satement->fetchAll();
 
+$query = "SELECT * FROM `contact` ";
+$satement2 = $conn->prepare($query);
+$satement2->execute();
+$contacts = $satement2->fetchAll();
+
+
 ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -18,85 +24,7 @@ $orders = $satement->fetchAll();
                     <!-- Page Heading -->
 
                     <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                earnings</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Comments
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              
                 <!-- Content Row -->
 
 
@@ -133,15 +61,15 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                         <th>#</th>
                         <th>Name</th>
                         <th>Total</th>
-                        <th>date</th>
+                        <th>Date</th>
                         <th>Order No.</th>
-                        <th>more details</th>                        
+                        <th>More details</th>                        
+                        <th>Delete</th>                        
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $i => $order): ?>
-
-
+                            
                                 <tr>
                                     <th ><?php echo $i + 1; ?></th>
                                     <td><?php echo $order["username"] ?></td>
@@ -155,7 +83,43 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                                             <input type="hidden" name="v_order" value="<?php echo $order['user_id']; ?>">
                                             <button type="submit" class="btn btn-primary" name="view">View</button>
                                         </form>
+                                        </td>
+                                        <td>
+                                        <form action="order_delete1.php" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="d_order" value="<?php echo $order['order_id']; ?>">
+                                            <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                                        </form>
                                     </td>
+                                    
+                                </tr>
+                    <?php endforeach;?>
+
+                </tbody>
+            </table>
+        </div>
+<br>
+<br>
+<br>
+         <div class="table-responsive">
+                     <h5 class="mg-0 font-weight-bold text-primary">Emails</h5>
+
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>E-mail Address</th>
+                        <th>Email Content</th>
+                                             
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($contacts as $i => $contact): ?>
+
+
+                                <tr>
+                                    <th ><?php echo $i + 1; ?></th>
+                                    <td><?php echo $contact["contact_email"] ?></td>
+                                    <td><?php echo $contact["contact_des"] ?></td>
                                     
                                 </tr>
                     <?php endforeach;?>

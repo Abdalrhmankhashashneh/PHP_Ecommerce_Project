@@ -17,8 +17,8 @@ if(isset($_SESSION['Cart'])){
 				<nav class="limiter-menu-desktop container ">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo" style="height : 70px;">
-						<img src="images/logo2.png" height="100px" alt="IMG-LOGO">
+					<a href="#" class="logo" style="height : 150px;">
+						<img src="images/logo2.png" height="120px" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->

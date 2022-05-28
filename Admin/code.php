@@ -158,7 +158,7 @@ if (isset($_POST['add_category'])) {
 
             }
 
-        } 
+        }
 
     }
 
@@ -256,7 +256,7 @@ if (isset($_POST['edit_category'])) {
 
                 }
 
-            } 
+            }
 // echo "helllo";
 
         }
@@ -266,7 +266,7 @@ if (isset($_POST['edit_category'])) {
 }
 //***********************edit subcategory*************************** */
 if (isset($_POST['edit_subcategory'])) {
-$state = false;
+    $state = false;
 
     $id = $_GET['id'] ?? null;
 
@@ -457,13 +457,13 @@ if (isset($_POST['add_product'])) {
 
         }
 
-    } 
+    }
 
 }
 /**********************Edit Product******************** */
 
 if (isset($_POST['edit_product'])) {
-$state = false;
+    $state = false;
 
     $id = $_GET['id'] ?? null;
 
@@ -526,7 +526,7 @@ $state = false;
             $statment->bindValue(':name', $product_name);
             $statment->bindValue(':price', $product_price);
             $statment->bindValue(':image', $imagePath);
-            $statment->bindValue(':desc', $product_desc);
+            $statment->bindValue(':desc', $product_des);
             $statment->bindValue(':sub_id', $subcategory_id);
             $statment->bindValue(':id', $id);
             $statment->execute();
@@ -548,8 +548,6 @@ $state = false;
 }
 
 //*******************user creation **************************/
-
-
 
 if (isset($_POST["user_reg"])) {
     $state = false;
@@ -625,7 +623,7 @@ header("Location: user_index.php");
 }
 //*******************user update **************************/
 if (isset($_POST['user_update'])) {
-    
+
     $state = false;
     $id = $_GET['id'];
     $username = $_POST['username'];

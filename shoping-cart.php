@@ -7,64 +7,18 @@ $op = false ;
 if(!isset($_SESSION['total'])){
 	$_SESSION['total'] = 0;
 } 
+if (isset($_POST['update'])) {
+	if (isset($_SESSION['Cart'])) {
+		$i = 1;
 
-function ViewCartData(){
-	global $total_cart ; 
-	if(isset($_SESSION['Cart'])){
-		global $op ;
-		foreach ($_SESSION['Cart'] as $value) {
-			$op = true ;
-			$_SESSION['total'] = 0;
-			$_SESSION['total'] += $value['total'];
-			echo '
-			<tr class="table_row">
-			<td class="column-1">
-				<div class="how-itemcart1">
-					<img src="admin/'.$value['pro_img'].'" alt="IMG">
-				</div>
-			</td>
-			<td class="column-2">'.$value['pro_name'].'</td>
-			<td class="column-3">$ '.$value['pro_price'].'</td>
-			<td class="column-4">
-				<div class="wrap-num-product flex-w m-l-auto m-r-0">
-					<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-						<i class="fs-16 zmdi zmdi-minus"></i>
-					</div>
-
-					<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="'.$value['quantity'].'">
-
-					<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-						<i class="fs-16 zmdi zmdi-plus"></i>
-					</div>
-				</div>
-			</td>
-			<td class="column-5">$ '.$value['total'].'</td>
-		</tr>
-
-			';
-				}
-		
-		}
-	
-	
-	}
-
-	if(isset($_POST['coupon'])){
-		$Code =$_POST['coupon'] ;
-	$q="
-	SELECT *  FROM coupon WHERE coupon_code = $Code
-	";
-	$data = $GLOBALS['db']->query($q);
-		foreach($data as $value){
-			if($value['coupon_code'] == $Code){
-				$_SESSION['total'] = $_SESSION['total'] *  $value['discount'];
-			}
-				else{
-					$m = true ;
-				}
-			
+		foreach ($_SESSION['Cart'] as $keys => $values) {
+			$_SESSION["Cart"][$keys]['quantity'] = $_POST['quantity' . $i];
+			$_SESSION["Cart"][$keys]['total'] = $values['pro_price'] * $_POST['quantity' . $i];
+			$i++;
 		}
 	}
+}
+
 
 
 
@@ -107,7 +61,7 @@ function ViewCartData(){
 		
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<form class="bg0 p-t-75 p-b-85" method="post">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -122,14 +76,69 @@ function ViewCartData(){
 									<th class="column-5">Total</th>
 								</tr>
 
-									<?php ViewCartData(); ?> 					
+									<?php  $total_cart ; 
+	if(isset($_SESSION['Cart'])){
+		$i=1;
+		global $op ;
+		foreach ($_SESSION['Cart'] as $value) {
+			$op = true ;
+			$_SESSION['total'] = $_SESSION['Total_cart'];
+			?>
+			<tr class="table_row">
+			<td class="column-1">
+				<a href="?actiond=true&pro_id=<?php echo $value['pro_id']; ?> ">
+				<div class="how-itemcart1">
+					<img src="admin/<?php echo $value['pro_img'];?>" alt="IMG">
+				</div>
+			</a>
+			</td>
+			<td class="column-2"><?php echo $value['pro_name'] ; ?></td>
+			<td class="column-3">$ <?php echo $value['pro_price'];?></td>
+			<td class="column-4">
+				<div class="wrap-num-product flex-w m-l-auto m-r-0">
+					<div class="minus btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+						<i class="fs-16 zmdi zmdi-minus"></i>
+					</div>
+					<input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity<?php echo $i ?>" value="<?php echo $value['quantity']; ?>">
+
+					<div class="plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+						<i class=" fs-16 zmdi zmdi-plus"></i>
+					</div>
+
+				</div>
+			</td>
+			<td class="column-5"> <?php echo $value['total'];?> JOD</td>
+		</tr>
+
+		<?php
+				$i++;}
+		
+		}
+	
+	
+	
+	if(isset($_POST['coupon'])){
+		$Code =$_POST['coupon'] ;
+	$q="
+	SELECT *  FROM coupon WHERE coupon_code = $Code
+	";
+	$data = $GLOBALS['db']->query($q);
+		foreach($data as $value){
+			if($value['coupon_code'] == $Code){
+				$_SESSION['total'] = $_SESSION['total'] *  $value['discount'];
+			}
+				else{
+					$m = true ;
+				}
+			
+		}} ?> 					
 			
 							</table>
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
-								<form action="" method="post">
+								
 								<?php if($m){
 	echo '
 	<div class="alert alert-danger" role="alert">
@@ -137,14 +146,11 @@ function ViewCartData(){
    </div>	
 	';
 }?>
-									<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-									<input type="submit" class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" value="Apply coupon">
-								</form>
+									<input type="submit" class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" name="update" value="Update Cart">
+								
 							</div>
 
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								Update Cart
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -195,7 +201,7 @@ function ViewCartData(){
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$<?php echo $_SESSION['total']?>
+									<?php echo $_SESSION['Total_cart']?> JOD
 								</span>
 							</div>
 						</div>
@@ -261,6 +267,24 @@ function ViewCartData(){
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script >
+		$(document).ready(function() {
+			$('.minus').click(function () {
+				var $input = $(this).parent().find('input');
+				var count = parseInt($input.val()) - 1;
+				count = count < 1 ? 1 : count;
+				$input.val(count);
+				$input.change();
+				return false;
+			});
+			$('.plus').click(function () {
+				var $input = $(this).parent().find('input');
+				$input.val(parseInt($input.val()) + 1);
+				$input.change();
+				return false;
+			});
+		});
+	</script>
 
 </body>
 </html>
