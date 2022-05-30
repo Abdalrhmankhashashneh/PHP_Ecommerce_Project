@@ -19,7 +19,7 @@ if (isset($_POST['edit_cat'])) {
 <div class="container-fluid">
   <div class="card shadow mb-9">
     <div class="card-header py-3">
-        <h5 class="mg-0 font-weight-bold text-primary">Edit Admin profile</h5>
+        <h5 class="mg-0 font-weight-bold text-primary">Edit Category </h5>
 
     </div>
 <div class="card-body">

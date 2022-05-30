@@ -79,7 +79,7 @@
 			<div class="flex-w flex-sb-m p-b-52" style="    margin-top: 150px;">
 			
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-			<h2 class=" cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">Categories  </h2>
+
 			<li class="p-b-10">
 							<a href="?allproduct" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
 								All Product

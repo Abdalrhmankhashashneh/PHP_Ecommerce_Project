@@ -344,14 +344,14 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                                             <div class="myaccount-content">
                                                 <h3>Account Details</h3>
                                                 <div class="account-details-form">
-                                                    <form action="#">
+                                                    <form action="updateuser.php" method="get">
                                                         <div class="row">
                                                        
-                                                         
+                                                       
                                                         </div>
                                                         <div class="single-input-item">
                                                             <label for="display-name" class="required">Display Name</label>
-                                                            <input type="text" id="display-name" value="<?php echo $row['username']; ?>">
+                                                            <input type="text" id="display-name" name="name" value="<?php echo $row['username']; ?>">
                                                         </div>
                                                  
                                                         <fieldset>
@@ -374,6 +374,7 @@ $row=$result->fetch(PDO::FETCH_ASSOC);
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                
                                                         </fieldset>
                                                         <div class="single-input-item">
                                                             <button class="check-btn sqr-btn ">Save Changes</button>

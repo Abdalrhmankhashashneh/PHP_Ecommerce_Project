@@ -171,7 +171,7 @@ $op =true;
 							</span>
 
                             <p class="stext-115 cl1 size-213 p-t-18">
-                                sotol@gmail.com
+                                housekitchen@gmail.com
                             </p>
                         </div>
                     </div>

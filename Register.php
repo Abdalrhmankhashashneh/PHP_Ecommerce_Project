@@ -3,6 +3,9 @@ session_start();
 if(isset($_SESSION['loggeduser'])){
     header('location:profile.php');
 }
+
+    
+
 ?>
 <html>
 <head>
@@ -81,7 +84,8 @@ $result->execute([':password'=>$password,':email'=>$email,':address'=>$address,'
 $count=$result->rowCount();
 if($count==1){
     echo "<h2 style='color:blue'>User Created succssfully</h2>";
-    //  echo "<span>Have already an account?</span><a id='login' href='loginform.php'>login<a>";
+    header('location:login.php');
+	//  echo "<span>Have already an account?</span><a id='login' href='loginform.php'>login<a>";
     
 }else{
     echo "User failed to login";
